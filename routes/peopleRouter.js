@@ -6,11 +6,11 @@ const {
   addPerson,
   updatePerson,
   deletePerson,
-  idCheck,
+  isAdmin,
 } = require("../service/peopleService");
 
-router.get("/", getPeople);
-router.get("/search", idCheck, getPeopleByName);
+router.get("/", isAdmin, getPeople);
+router.get("/search", getPeopleByName);
 router.get("/:id", getPeopleById);
 router.post("/", addPerson);
 router.put("/:id", updatePerson);

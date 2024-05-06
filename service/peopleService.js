@@ -1,11 +1,11 @@
 const fs = require("fs");
 
-const idCheck = (req, res, next) => {
-  const { id } = req.params;
-  const newId = +id;
-  if (newId > 0) next();
-
-  res.status(400).send("Invalid ID");
+const isAdmin = (req, res, next) => {
+  if (req.query.isAdmin === "admin") {
+    next();
+  } else {
+    res.status(401).send("Forbidden");
+  }
 };
 
 const getPeople = (req, res) => {
@@ -105,5 +105,5 @@ module.exports = {
   addPerson,
   updatePerson,
   deletePerson,
-  idCheck,
+  isAdmin,
 };
