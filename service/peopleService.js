@@ -40,6 +40,11 @@ const getPeopleById = (req, res) => {
   });
 };
 
+const uploadImagePeople = (req, res) => {
+  const url = `/uploads/${req.file.filename}`;
+
+  res.status(200).json({ message: "uploaded", url });
+};
 const addPerson = (req, res) => {
   fs.readFile("people.json", "utf8", (err, data) => {
     if (err) {
@@ -100,7 +105,7 @@ const deletePerson = (req, res) => {
 };
 
 const getViews = (req, res) => {
-  res.render("index");
+  res.render("../public/views/index");
 };
 const getPeopleViews = (req, res) => {
   fs.readFile("people.json", "utf8", (err, data) => {
@@ -108,10 +113,12 @@ const getPeopleViews = (req, res) => {
       console.log(err);
     }
     const people = JSON.parse(data);
-    res.render("people", { people });
+    res.render("../public/views/people", { people });
   });
 };
+
 module.exports = {
+  uploadImagePeople,
   getViews,
   getPeopleViews,
   getPeople,

@@ -13,6 +13,7 @@
         <th>Name</th>
         <th>Username</th>
         <th>Email</th>
+        <th>Action</th>
       </tr>
       <% people.forEach((row, idx) => { %>
       <tr>
@@ -20,8 +21,14 @@
         <td><%= row.name %></td>
         <td><%= row.username %></td>
         <td><%= row.email %></td>
+        <td>
+          <a href="/views/people/update/<%= row.id %>">Edit</a> |
+          <a href="/views/people/delete/<%= row.id %>">Delete</a>
+        </td>
       </tr>
       <% }) %>
     </table>
+    <br />
+    <a href="/views/people/add">Add person</a>
   </body>
 </html>

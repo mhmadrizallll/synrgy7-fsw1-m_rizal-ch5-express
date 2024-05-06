@@ -9,7 +9,10 @@ const {
   isAdmin,
   getViews,
   getPeopleViews,
+  uploadImagePeople,
 } = require("../service/peopleService");
+
+const upload = require("../middlewares/UploadHandler");
 
 router.get("/", getViews);
 router.get("/people", getPeopleViews);
@@ -20,5 +23,6 @@ router.get("/:id", getPeopleById);
 router.post("/", addPerson);
 router.put("/:id", updatePerson);
 router.delete("/:id", deletePerson);
+router.post("/upload", upload.single("image"), uploadImagePeople);
 
 module.exports = router;
