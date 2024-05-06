@@ -7,9 +7,11 @@ const {
   updatePerson,
   deletePerson,
   isAdmin,
+  getViews,
   getPeopleViews,
 } = require("../service/peopleService");
 
+router.get("/", getViews);
 router.get("/people", getPeopleViews);
 
 router.get("/", isAdmin, getPeople);

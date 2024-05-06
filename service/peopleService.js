@@ -99,16 +99,20 @@ const deletePerson = (req, res) => {
   });
 };
 
+const getViews = (req, res) => {
+  res.render("index");
+};
 const getPeopleViews = (req, res) => {
   fs.readFile("people.json", "utf8", (err, data) => {
     if (err) {
       console.log(err);
     }
     const people = JSON.parse(data);
-    res.render("index", { people });
+    res.render("people", { people });
   });
 };
 module.exports = {
+  getViews,
   getPeopleViews,
   getPeople,
   getPeopleByName,
