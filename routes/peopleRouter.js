@@ -7,7 +7,10 @@ const {
   updatePerson,
   deletePerson,
   isAdmin,
+  getPeopleViews,
 } = require("../service/peopleService");
+
+router.get("/people", getPeopleViews);
 
 router.get("/", isAdmin, getPeople);
 router.get("/search", getPeopleByName);

@@ -98,7 +98,18 @@ const deletePerson = (req, res) => {
     });
   });
 };
+
+const getPeopleViews = (req, res) => {
+  fs.readFile("people.json", "utf8", (err, data) => {
+    if (err) {
+      console.log(err);
+    }
+    const people = JSON.parse(data);
+    res.render("index", { people });
+  });
+};
 module.exports = {
+  getPeopleViews,
   getPeople,
   getPeopleByName,
   getPeopleById,
