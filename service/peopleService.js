@@ -1,5 +1,6 @@
 const fs = require("fs");
-
+// const cloudinary = require("cloudinary").v2;
+const cloudinary = require("../middlewares/cloudinary");
 const isAdmin = (req, res, next) => {
   if (req.query.isAdmin === "admin") {
     next();
@@ -117,6 +118,15 @@ const getPeopleViews = (req, res) => {
   });
 };
 
+const cdnUploadImagePeople = (req, res) => {
+  const fileBase64 = req.file.buffer.toString("base64");
+  const file = `data:${req.file.mimetype};base64,${fileBase64}`;
+
+  cloudinary.uploader.upload(file, (err, result) => {
+    res.status(200).json({ message: "uploaded", url: result.url });
+  });
+};
+
 module.exports = {
   uploadImagePeople,
   getViews,
@@ -128,4 +138,5 @@ module.exports = {
   updatePerson,
   deletePerson,
   isAdmin,
+  cdnUploadImagePeople,
 };
