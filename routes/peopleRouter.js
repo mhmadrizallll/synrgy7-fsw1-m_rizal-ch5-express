@@ -16,7 +16,7 @@ const {
 const upload = require("../middlewares/UploadHandler");
 const cdnUpload = require("../middlewares/cdnUploadHandler");
 
-router.get("/", getViews);
+// router.get("/", getViews);
 router.get("/people", isAdmin, getPeopleViews);
 
 router.get("/", getPeople);
